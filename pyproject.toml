@@ -1,0 +1,135 @@
+#### black ####################################################################
+[tool.black]
+skip-magic-trailing-comma = true
+target-version = ["py311"]
+
+#### coverage #################################################################
+[tool.coverage.run]
+branch = true
+data_file = ".coverage/data"
+parallel = true
+
+[tool.coverage.report]
+exclude_lines = ["# pragma: no cover", "@overload"]
+fail_under = 100.0
+skip_covered = true
+skip_empty = true
+
+[tool.coverage.html]
+directory = ".coverage/html"
+
+#### hatch ####################################################################
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dycw_template"]
+
+[tool.hatch.version]
+path = "src/dycw_template/__init__.py"
+
+#### nitpick ##################################################################
+[tool.nitpick]
+style = [
+  "https://raw.githubusercontent.com/dycw/nitpick/master/styles/common.toml",
+  "https://raw.githubusercontent.com/dycw/nitpick/master/styles/3.11.toml",
+  "https://raw.githubusercontent.com/dycw/nitpick/master/styles/pip-compile-no-hashes.toml",
+]
+
+#### project ##################################################################
+[project]
+name = "dycw-template"
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">= 3.11"
+authors = [{ name = "Derek Wan", email = "d.wan@icloud.com" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "dycw-utilities[test]",
+  "hatch",
+  "pip-tools",
+  "pytest-cov",
+  "pytest-xdist",
+  "ruff",
+]
+
+#### pyright ##################################################################
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__", ".direnv", ".git", ".venv"]
+pythonVersion = "3.11"
+executionEnvironments = [{ root = "src" }]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportIncompatibleMethodOverride = false
+reportMissingTypeArgument = false
+reportPrivateUsage = false
+reportPrivateImportUsage = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownVariableType = false
+reportUntypedBaseClass = false
+reportMissingSuperCall = "error"
+reportPropertyTypeMismatch = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportUnusedCallResult = "error"
+
+#### pytest ###################################################################
+[tool.pytest.ini_options]
+addopts = [
+  "-rsxX",
+  "--color=auto",
+  "--cov=dycw-template",
+  "--cov-config=pyproject.toml",
+  "--cov-report=html",
+  "--strict-markers",
+  "--tb=native"
+]
+filterwarnings = ["error"]
+minversion = "7.0"
+testpaths = ["src/tests"]
+xfail_strict = true
+
+#### ruff #####################################################################
+[tool.ruff]
+ignore = [
+  "ANN101", # flake8-annotations, missing-type-self
+  "ANN102", # flake8-annotations, missing-type-cls
+  "ANN401", # flake8-annotations, dynamically-typed-expression
+  "B008",  # flake8-bugbear, function-call-argument-default
+  "COM812",  # flake8-commas, trailing-comma-missing
+  "D", # pydocstyle
+  "PD", # pandas-vet
+  "PLR0913", # refactor, too-many-arguments
+  "PT012", # flake8-pytest-style, raises-with-multiple-statements
+  "PT013", # flake8-pytest-style, incorrect-pytest-import
+  "TCH001", # flake8-type-checking, typing-only-first-party-import
+  "TCH002", # flake8-type-checking, typing-only-third-party-import
+  "TCH003", # flake8-type-checking, typing-only-standard-library-import
+  "TRY200", # tryceratops, reraise-no-cause
+  "TRY301", # tryceratops, raise-within-try
+
+]
+select = ["ALL"]
+src = ["src", "tests"]
+target-version = "py311"
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.per-file-ignores]
+"src/tests/**/*.py" = [
+  "FBT001", # flake8-boolean-trap, boolean-positional-arg-in-function-definition
+  "FBT003", # flake8-boolean-trap, boolean-positional-value-in-function-call
+  "PLR2004", # refactor, magic-value-comparison
+  "S101", # flake8-bandit, assert-used
+
+]

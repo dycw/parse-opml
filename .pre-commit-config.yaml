@@ -1,0 +1,70 @@
+repos:
+  # fixers
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.278
+    hooks:
+      - id: ruff
+        args: [--fix]
+  # - repo: https://github.com/dycw/pre-commit-hooks
+  #   rev: 0.8.26
+  #   hooks:
+  #     - id: run-hatch-version
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: no-commit-to-branch
+      - id: trailing-whitespace
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+      - id: black-jupyter
+  # linters
+  - repo: https://github.com/andreoliwa/nitpick
+    rev: v0.33.2
+    hooks:
+      - id: nitpick-check
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.5
+    hooks:
+      - id: shellcheck
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: pyright
+        language: system
+        types: [python]
+  # compile
+  - repo: https://github.com/jazzband/pip-tools
+    rev: 7.0.0
+    hooks:
+      - id: pip-compile
+        args:
+          - --allow-unsafe
+          - --quiet
+          - --upgrade
+          - pyproject.toml
+        files: ^pyproject\.toml$
+      - id: pip-compile
+        args:
+          - --allow-unsafe
+          - --extra=dev
+          - --output-file=requirements-dev.txt
+          - --quiet
+          - --upgrade
+          - pyproject.toml
+        files: ^pyproject\.toml$
