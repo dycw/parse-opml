@@ -4,3 +4,15 @@
 #
 #    pip-compile --allow-unsafe pyproject.toml
 #
+beartype==0.14.1
+    # via dycw-utilities
+beautifulsoup4==4.12.2
+    # via parse-opml (pyproject.toml)
+dycw-utilities==0.10.0
+    # via parse-opml (pyproject.toml)
+lxml==4.9.3
+    # via parse-opml (pyproject.toml)
+soupsieve==2.4.1
+    # via beautifulsoup4
+typing-extensions==4.7.1
+    # via dycw-utilities
