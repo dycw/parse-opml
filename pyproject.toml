@@ -27,10 +27,10 @@ build-backend = "hatchling.build"
 sources = ["src"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dycw_template"]
+packages = ["src/parse_opml"]
 
 [tool.hatch.version]
-path = "src/dycw_template/__init__.py"
+path = "src/parse_opml/__init__.py"
 
 #### nitpick ##################################################################
 [tool.nitpick]
@@ -42,7 +42,7 @@ style = [
 
 #### project ##################################################################
 [project]
-name = "dycw-template"
+name = "parse-opml"
 dynamic = ["version"]
 readme = "README.md"
 requires-python = ">= 3.11"
@@ -87,7 +87,7 @@ reportUnusedCallResult = "error"
 addopts = [
   "-rsxX",
   "--color=auto",
-  "--cov=dycw-template",
+  "--cov=parse-opml",
   "--cov-config=pyproject.toml",
   "--cov-report=html",
   "--strict-markers",
