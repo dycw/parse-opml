@@ -25,6 +25,7 @@ certifi==2023.5.7
 click==8.1.5
     # via
     #   black
+    #   dycw-utilities
     #   hatch
     #   pip-tools
     #   userpath
@@ -32,7 +33,7 @@ coverage[toml]==7.2.7
     # via pytest-cov
 distlib==0.3.7
     # via virtualenv
-dycw-utilities[test]==0.10.0
+dycw-utilities[click,more-itertools,test]==0.10.0
     # via parse-opml (pyproject.toml)
 editables==0.4
     # via hatchling
@@ -76,7 +77,9 @@ markdown-it-py==3.0.0
 mdurl==0.1.2
     # via markdown-it-py
 more-itertools==9.1.0
-    # via jaraco-classes
+    # via
+    #   dycw-utilities
+    #   jaraco-classes
 mypy-extensions==1.0.0
     # via black
 packaging==23.1

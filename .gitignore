@@ -163,3 +163,4 @@ cython_debug/
 .direnv/
 .ruff_cache/
 Untitled.ipynb
+*.csv

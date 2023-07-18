@@ -49,7 +49,7 @@ requires-python = ">= 3.11"
 authors = [{ name = "Derek Wan", email = "d.wan@icloud.com" }]
 dependencies = [
   "beautifulsoup4 >= 4.12.2, < 4.13",
-  "dycw-utilities >= 0.10.0, < 0.11",
+  "dycw-utilities[click,more-itertools] >= 0.10.0, < 0.11",
   "lxml >= 4.9.3, < 4.10",
 ]
 
@@ -63,6 +63,9 @@ dev = [
   "pytest-xdist",
   "ruff",
 ]
+
+[project.scripts]
+parse-opml = "parse_opml.cli:main"
 
 #### pyright ##################################################################
 [tool.pyright]
