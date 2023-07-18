@@ -8,10 +8,14 @@ beartype==0.14.1
     # via dycw-utilities
 beautifulsoup4==4.12.2
     # via parse-opml (pyproject.toml)
-dycw-utilities==0.10.0
+click==8.1.5
+    # via dycw-utilities
+dycw-utilities[click,more-itertools]==0.10.0
     # via parse-opml (pyproject.toml)
 lxml==4.9.3
     # via parse-opml (pyproject.toml)
+more-itertools==9.1.0
+    # via dycw-utilities
 soupsieve==2.4.1
     # via beautifulsoup4
 typing-extensions==4.7.1

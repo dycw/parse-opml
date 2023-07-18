@@ -9,8 +9,8 @@ def test_parse() -> None:
     path = get_repo_root().joinpath("src", "tests", "assets", "overcast.opml")
     assert path.exists()
     with path.open(mode="r") as fh:
-        markup = fh.read().strip("\n")
-    contents = parse(markup)
-    assert len(contents) == 88
+        markup = fh.read()
+    feeds = parse(markup)
+    assert len(feeds) == 88
     for title in ["TED Talks Daily", "Cosmique"]:
-        assert title in contents
+        assert any(feed.title == title for feed in feeds)
